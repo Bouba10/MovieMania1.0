@@ -8,11 +8,32 @@
 import SwiftUI
 
 struct CustomImageView: View {
+    let itemWidth : CGFloat
+    let itemHeight : CGFloat
+    
+    let movie : Movie
+    var imageType : MovieImageType = .poster
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        AsyncImage(url: URL(string: movie.getImage(for: imageType))) { image in
+            image
+                .resizable()
+                .scaledToFill()
+        } placeholder: {
+            ZStack {
+                Color.mmGray
+                VStack{
+                    ProgressView()
+                    Text(movie.title ?? "")
+                }
+            }
+        }
+        .frame(width: itemWidth, height: itemHeight)
+        .clipShape(RoundedRectangle(cornerRadius: 20))
+
     }
 }
 
 #Preview {
-    CustomImageView()
+    CustomImageView(itemWidth: 150, itemHeight: 200, movie: .preview)
 }

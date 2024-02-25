@@ -8,11 +8,40 @@
 import SwiftUI
 
 struct ReviewCard: View {
+    let review : Review
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(alignment: .leading, content: {
+       
+            HStack {
+                AsyncImage(url: URL(string: review.authorImage)) { image in
+                    image
+                        .resizable()
+                } placeholder: {
+                    ZStack {
+                        Color.mmPurple
+                        
+                        if let firstchart = review.authorName.first{
+                            Text(String(firstchart))
+                        }
+                    }
+                   
+                }
+                .scaledToFill()
+                .frame(width: 45, height: 45)
+                .clipShape(Circle())
+
+                
+                Text(review.authorName)
+            }
+            
+            Text(review.content)
+            
+            Divider()
+        })
     }
 }
 
 #Preview {
-    ReviewCard()
+    ReviewCard(review: .mocReview)
 }

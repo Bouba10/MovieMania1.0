@@ -8,11 +8,26 @@
 import SwiftUI
 
 struct CastView: View {
+    let cast : CastProfile
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            AsyncImage(url: cast.photoUrl) { image in
+                      image
+                          .resizable()
+                          .scaledToFill()
+                          .frame(width: 100, height: 120)
+                          .clipShape(RoundedRectangle(cornerRadius: 15))
+                  } placeholder: {
+                      ProgressView()
+                          .frame(width: 100, height: 120)
+                  }
+                  Text(cast.name)
+                      .lineLimit(1)
+                      .frame(width: 100)
+              }
     }
 }
 
-#Preview {
-    CastView()
-}
+//#Preview {
+//    CastView()
+//}

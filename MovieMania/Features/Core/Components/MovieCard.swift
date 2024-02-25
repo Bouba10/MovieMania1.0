@@ -8,11 +8,24 @@
 import SwiftUI
 
 struct MovieCard: View {
+    let movie : Movie
+    let type : MovieCardType = .poster
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        CustomImageView(itemWidth: itemWidth, itemHeight: itemHeight, movie: movie, imageType: .poster)
     }
 }
 
+
+extension MovieCard {
+    var itemWidth : CGFloat {
+        screenWidth * type.widthPercent
+    }
+    
+    var itemHeight : CGFloat {
+        screenWidth * type.heightPercent
+    }
+}
 #Preview {
-    MovieCard()
+    MovieCard(movie: .preview)
 }

@@ -6,12 +6,22 @@
 //
 
 import SwiftUI
+import FirebaseCore
 
 @main
 struct MovieManiaApp: App {
+    @StateObject var viewModel = AuthenticationViewModel()
+    
+    init(){
+        FirebaseApp.configure()
+        print("config firebase")
+    }
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(viewModel)
+            
         }
     }
 }

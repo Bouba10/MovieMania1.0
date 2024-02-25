@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+final class AuthenticationManager {
+    static let shared = AuthenticationManager()
+    
+    private init(){   }
+    
+}
